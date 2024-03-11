@@ -1,0 +1,73 @@
+<footer class="primaryColor dark:bg-gray-900">
+    <div class="  container px-6 py-1 mx-auto">
+        <div class=" px-2">
+            <div class="grid grid-cols-6 pt-7">
+                <div class="col-span-2">
+                        <h1 class="text-[#009659] text-lg font-bold" >Guía</h1>
+                        <ul>
+                            <li class="mt-2">
+                                <a href="{{routes[0].url}}">
+                                    Citas Médicas
+                                </a>
+                            </li>
+                            <li class="mt-2">
+                                <a href="{{routes[1].url}}">
+                                    Servicios
+                                </a>
+                            </li>
+                            <li class="mt-2">
+                                <a href="{{routes[2].url}}">
+                                    Trabaje con nosotros
+                                </a>
+                            </li>
+                            <li class="mt-2">
+                                <a href="{{routes[3].url}}">
+                                    Nuestra historia
+                                </a>
+                            </li>
+                            <li class="mt-2">
+                                <a href="{{routes[4].url}}">
+                                    Educación Virtual San Agustín
+                                </a>
+                            </li>
+                        </ul>
+                </div>
+                <div class="col-span-2">
+                    <h1 class="text-[#009659] text-lg font-bold">Contacto</h1>
+                    <ul>
+                        <li class="mt-2">
+                            <a href="">
+                                <i class="bi bi-geo-alt-fill text-[#6EC1E4]"></i>  18 de Noviembre y Azuay
+                            </a>
+                        </li>
+                        <li class="mt-2">
+                            <a href="">
+                                <i class="bi bi-telephone-fill text-[#6EC1E4]"></i> (593) 07-257 0314
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-span-2  " >
+                    <h1 class="text-[#009659] text-lg font-bold justify-start pl-10 ">Visítanos</h1>
+                    <div class="grid justify-start ease cursor-pointer " (click)="redirecTo()"  >
+                        <img src="../../../assets/img/iconoubicacionhcsa.png" alt="">
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <hr class="my-10 border-black dark:border-gray-700" />
+
+        <div class="  flex flex-col items-center sm:flex-row sm:justify-between">
+            <img src="../../../assets/img/blanco.png" alt="" style="width: 20%;">
+            <p class="text-sm text-white">Hospital Clínica San Agustín, Experiencia que brinda Confianza</p>
+
+            <div class="flex mt-3 -mx-2 sm:mt-0">
+                <a href="#" class="mx-2 text-sm text-white transition-colors duration-300 hover:text-gray-500 dark:hover:text-gray-300" aria-label="Reddit"> Todos los derechos reservados © {{year}}. </a>
+            </div>
+        </div>
+    </div>
+</footer>

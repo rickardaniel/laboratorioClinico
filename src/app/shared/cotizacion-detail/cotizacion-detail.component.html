@@ -1,0 +1,73 @@
+
+
+<div class="mt-0" >
+    <div class="flex justify-between" >
+        <h1 class="ml-4 primaryFont text-xl font-semibold " >Cotización</h1>
+<div class="relative" >
+    <button type="button" class="bg-gray-200 px-6 py-2 rounded-lg mr-1">
+        <img src="../../../assets/img/microscope.svg" class="w-5" alt="">
+        <span class="sr-only">Notifications</span>
+          <div class=" animate-bounce   absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900">{{arrayTest.length}}</div>
+        </button>
+</div>
+
+    </div>
+    <hr class="mt-4 ">
+
+    <h1 class="ml-5 mt-7 mb-8 primaryFont text-md font-semibold " >Lista de exámenes</h1>
+    
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg p-2">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700  primaryColor text-white dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" colspan="4"  class=" py-2  pr-14 " style="text-align: right;">
+                    Valor
+                </th>
+  
+            </tr>
+        </thead>
+        <tbody>
+            @if(arrayTest.length==0){
+                <tr>
+                    <th colspan="4" class="py-2"  >
+                        <span class="flex justify-center py-1 bg-green-100 " >
+                            Agregue exámenes al carrito
+                        </span>
+                    </th>
+                </tr>
+            }@else{
+                @for(test of arrayTest; track test.id){
+                    <tr class="bg-white border-b  2xl:text-sm xl:text-xs py-3 ">      
+
+                        <td scope="row" class=" py-3  font-small text-gray-900 whitespace-nowrap  pl-2">
+                          {{test.name}}
+                      </td>
+                        <td class="px-1 py-3">
+                            {{test.price | number: '1.2-2'  }}$
+                        </td>
+                        <td 
+                        class="px-1 py-3"     >
+                        <div class="flex justify-between" >
+                            <i class="bi bi-eye px-1 py-0.5 hover:bg-green-400 hover:text-white hover:rounded-full hover:px-1 hover:shadow-lg" ></i>     
+                            <i (click)="deleteTest(test)" class="bi bi-trash px-1 py-0.5  hover:bg-red-500 hover:text-white hover:rounded-full hover:px-1 hover:shadow-lg "></i>
+                        </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+        @if(arrayTest.length>0){
+        <tfoot>
+            <tr class="font-semibold text-gray-900 dark:text-white">
+                <th scope="row" class="px-6 py-3 text-base">Total</th>
+                <!-- <td class="px-6 py-3">3</td> -->
+                <!-- <td class="px-6 py-3">{{total | number: '1.2-2'  }}</td> -->
+                <td class="px-1 py-3"> {{calcularTotal(arrayTest)  | number: '1.2-2'}} $</td>
+            </tr>
+        </tfoot>
+    }
+    </table>
+</div>
+
+</div>

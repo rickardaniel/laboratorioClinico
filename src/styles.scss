@@ -1,1 +1,60 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+    font-family: "IBM Plex Sans", sans-serif;
+    scrollbar-width: thin; /* Para navegadores basados en Firefox */
+    scrollbar-color: transparent transparent; /* Para navegadores basados en Firefox */
+}
+
+.primaryColor{
+    background-color: #004E8C;
+}
+.primaryFont{
+    color:#004E8C;
+}
+
+.btnSuccess{
+    background-color: #61CE70;
+    color: white;
+    border-radius: 3px;
+    font-size: 13px;
+}
+.btnPrimary{
+    background-color: #004E8C;
+    color: white;
+    border-radius: 3px;
+    font-size: 13px;
+}
+.inputGeneral{
+    @apply border placeholder-gray-400 focus:outline-none focus:border-black w-full px-3  py-2 mt-2 mr-0 mb-0 ml-0 text-base text-sm  block bg-white border-gray-300 rounded-md;
+  }
+  
+  .labelGeneral{
+    @apply bg-white pt-0 pr-2 pb-0 pl-2 -mt-3 mr-0 mb-0 ml-2 font-medium text-gray-600 absolute  rounded-lg   xl:text-sm;
+  }
+
+  
+
+.animated {
+    animation-duration: 1s;
+    animation-fill-mode: both;
+  }
+  
+  .animate__backInRight {
+    animation-name: animate__backInRight;
+  }
+  
+  
+  @keyframes animate__backInRight {
+    from {
+      opacity: 0;
+      transform: translateX(-200px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+

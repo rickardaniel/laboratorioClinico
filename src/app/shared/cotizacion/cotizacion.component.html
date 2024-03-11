@@ -1,0 +1,95 @@
+<h1 class="flex justify-center text-3xl primaryFont">Encuentre exámenes disponibles y cotice sus precios aquí.</h1>
+<hr class="mt-4 ">
+
+<div class="grid grid-cols-5 items-center justify-center">
+  <div class="col-span-5 flex justify-center">
+    <div class="grid grid-cols-5 space-x-2">
+      <div class="col-span-4">
+        <div class="relative mt-7">
+          <p class="labelGeneral">Buscar exámen</p>
+          <input placeholder="Ingrese el número de orden" style="width: 30em;" formControlName="email" type="text"
+            class="inputGeneral" />
+        </div>
+      </div>
+      <div class="col-span-1">
+        <button class="btnSuccess text-white py-2.5 px-5 rounded text-xs mt-7 shadow-lg ">
+          Consultar
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="mt-5 mb-60">
+
+  <div id="accordion-color" data-accordion="open" data-active-classes="bg-[#009659] text-white">
+    <div class="grid grid-cols-2  ">
+      @for(test of tam; track test.id ; let index1 = $index){
+      <div class="col-span-1 p-2">
+        <h2 [id]="'accordion-color-heading-'+test.id">
+          <button type="button"
+            class="flex items-center justify-between w-full p-1  shadow-lg text-sm font-smal rtl:text-right text-gray-500 border border-b-sm border-gray-200 rounded-t-sm   hover:bg-green-200 hover:text-gray-500  gap-3"
+            [attr.data-accordion-target]="'#accordion-color-body-'+test.id" aria-expanded="true"
+            [attr.aria-controls]="'accordion-color-body-'+test.id">
+            <span class="pl-2">{{test.name}}</span>
+            <svg data-accordion-icon class="w-3.5 h-2.5 rotate-180 shrink-0 pr-1" aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 5 5 1 1 5" />
+            </svg>
+          </button>
+        </h2>
+        <div [id]="'accordion-color-body-'+test.id" class="hidden"
+          [attr.aria-labelledby]="'accordion-color-heading-'+test.id">
+          <div class="p-5 border  border-gray-200 ">
+
+
+            <div class="relative overflow-x-auto">
+              <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <tbody class="text-sm">
+                  @for(e of exams; track e.id ; let index = $index){
+                  <tr class="bg-white border-b  2xl:text-sm xl:text-xs">
+                    <td class="px-1 py-1">
+                      <div class="flex items-center mb-1">
+                        <input id="dc{{e.id}}" type="checkbox"  (change)="selectTest(e)"
+                          class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="default-checkbox"
+                          class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"></label>
+                      </div>
+                    </td>
+                    <td scope="row" class="  font-small text-gray-900 whitespace-nowrap ">
+                      {{e.name}}
+                    </td>
+                    <td class="px-1 py-1">
+                      {{e.price | number: '1.2-2' }}$
+                    </td>
+                    <td (click)="openModal('#modalRequisitos')" class="px-1 py-1">
+                      <i
+                        class="bi bi-eye px-1 py-0.5 hover:bg-green-400 hover:text-white hover:rounded-full hover:px-1 hover:shadow-lg"></i>
+
+                    </td>
+                  </tr>
+                  }
+
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+
+
+    <!-- } -->
+  </div>
+
+</div>
+
+<!-- Main modal -->
+<div id="modalRequisitos" tabindex="-1" aria-hidden="true"
+  class="hidden overflow-y-auto overflow-x-hidden fixed top-0 
+       right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full   animate__animated animate__slideInRight ">
+  <app-requirement (close)="closeModal($event, '#modalRequisitos')"></app-requirement>
+</div>
