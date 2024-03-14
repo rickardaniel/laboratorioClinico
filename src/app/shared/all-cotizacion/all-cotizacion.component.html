@@ -25,68 +25,63 @@
         </div>
         <div class="mt-5 mb-60">
 
-            <div id="accordion-color" data-accordion="open" data-active-classes="bg-[#009659] text-white">
-                <div class="grid grid-cols-2  ">
-                    @for(test of tam; track test.idCategory ; let index1 = $index){
-                    <div class="col-span-1 p-2">
-                        <h2 [id]="'accordion-color-heading-'+test.id">
-                            <button type="button"
-                          
-                                class="flex items-center justify-between w-full p-1  shadow-lg text-sm font-smal rtl:text-right text-gray-500 border border-b-sm border-gray-200 rounded-t-sm   hover:bg-green-200 hover:text-gray-500  gap-3"
-                                [attr.data-accordion-target]="'#accordion-color-body-'+test.idCategory" aria-expanded="true"
-                                [attr.aria-controls]="'accordion-color-body-'+test.idCategory">
-                                <span class="pl-2">{{test.name}}</span>
-                                <svg data-accordion-icon class="w-3.5 h-2.5 rotate-180 shrink-0 pr-1" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="M9 5 5 1 1 5" />
-                                </svg>
-                            </button>
-                        </h2>
-                        <div [id]="'accordion-color-body-'+test.idCategory" class="hidden"
-                            [attr.aria-labelledby]="'accordion-color-heading-'+test.idCategory">
-                            <div class="p-5 border  border-gray-200 ">
 
+            <div class="grid grid-cols-2  ">
+                <!-- <div class="block  "> -->
+                @for(test of tam; track test.idCategory ; let index1 = $index){
+                <div class="col-span-1 p-2 ">
+                    <details class="accordion  ">
+                        <summary class="accordion-btn2 text-sm  " (click)="openCard(test.idCategory,'open')">
+                            {{test.name}}</summary>
 
-                                <div class="relative overflow-x-auto">
-                                    <table
-                                        class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                        <tbody class="text-sm">
-                                            @for(e of test.data; track e.id ; let index = $index){
-                                            <tr class="bg-white border-b  2xl:text-sm xl:text-xs">
-                                                <td class="px-1 py-1">
-                                                    <div class="flex items-center mb-1">
-                                                        <input id="dc{{e.id}}" type="checkbox" (change)="selectTest(e)"
-                                                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                                        <label for="default-checkbox"
-                                                            class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"></label>
-                                                    </div>
-                                                </td>
-                                                <td scope="row" class="  font-small text-gray-900 whitespace-nowrap ">
-                                                    {{e.name}}
-                                                </td>
-                                                <td class="px-1 py-1">
-                                                    {{e.price | number: '1.2-2' }}$
-                                                </td>
-                                                <td (click)="openModal('#modalRequisitos')" class="px-1 py-1">
-                                                    <i
-                                                        class="bi bi-eye px-1 py-0.5 hover:bg-green-400 hover:text-white hover:rounded-full hover:px-1 hover:shadow-lg"></i>
-                                                </td>
-                                            </tr>
-                                            }
-                                        </tbody>
-                                    </table>
-                                </div>
-
+                        <!-- @if(flagCollapse){
+                            <summary class="accordion-btn text-sm shadow-md " (click)="openCard(test.idCategory,'open')" >{{test.name}}</summary>
+    
+                        }@else{
+                            <summary class="accordion-btn2 text-sm shadow-md " (click)="closeCard(test.idCategory,'close')" >{{test.name}}</summary>
+                        
+                        } -->
+                        <!-- @if(ver1 || ver2 || ver3 || ver4){ -->
+                        <div class="accordion-content py-3 shadow-md  ">
+                            <div class="relative overflow-x-auto">
+                                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                    <tbody class="text-sm">
+                                        @for(e of test.data; track e.id ; let index = $index){
+                                        <tr class="bg-white border-b  2xl:text-sm xl:text-xs hover:bg-neutral-100">
+                                            <td class="px-1 py-1">
+                                                <div class="flex items-center mb-1">
+                                                    <input id="dc{{e.id}}" type="checkbox" (change)="selectTest(e)" style="color: #075fa7;"
+                                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                    <label for="default-checkbox"
+                                                        class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"></label>
+                                                </div>
+                                            </td>
+                                            <td scope="row" class="  font-small text-gray-900 whitespace-nowrap ">
+                                                {{e.name}}
+                                            </td>
+                                            <td class="px-1 py-1">
+                                                {{e.price | number: '1.2-2' }}$
+                                            </td>
+                                            <td (click)="openModal('#modalRequisitos')" class="px-1 py-1">
+                                                <i
+                                                    class="bi bi-eye px-1 py-0.5 hover:bg-green-400 hover:text-white hover:rounded-full hover:px-1 hover:shadow-lg"></i>
+                                            </td>
+                                        </tr>
+                                        }
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
-                    </div>
-                    }
+                        <!-- } -->
+
+                    </details>
                 </div>
-
-
-                <!-- } -->
+                }
             </div>
+
+
+
+
 
         </div>
     </div>
@@ -99,9 +94,18 @@
                     <button type="button" class="bg-gray-200 px-6 py-2 rounded-lg mr-1">
                         <img src="../../../assets/img/microscope.svg" class="w-5" alt="">
                         <span class="sr-only">Notifications</span>
+                        @if(arrayTest.length == 0){
+                        <div
+                            class=" absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900">
+                            {{arrayTest.length}}
+                        </div>
+                        }@else {
                         <div
                             class=" animate-bounce   absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900">
-                            {{arrayTest.length}}</div>
+                            {{arrayTest.length}}
+                        </div>
+                        }
+
                     </button>
                 </div>
 
@@ -109,7 +113,6 @@
             <hr class="mt-4 ">
 
             <h1 class="ml-5 mt-7 mb-8 primaryFont text-md font-semibold ">Lista de exámenes</h1>
-
 
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg p-2">
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -125,14 +128,14 @@
                         @if(arrayTest.length==0){
                         <tr>
                             <th colspan="4" class="py-2">
-                                <span class="flex justify-center py-1 bg-green-100 ">
+                                <span class="flex justify-center font-normal py-1 bg-green-100 ">
                                     Agregue exámenes al carrito
                                 </span>
                             </th>
                         </tr>
                         }@else{
                         @for(test of arrayTest; track test.id){
-                        <tr class="bg-white border-b  2xl:text-sm xl:text-xs py-3 ">
+                        <tr class="bg-gray-100 border-b  2xl:text-sm xl:text-xs py-3  ">
 
                             <td scope="row" class=" py-3  font-small text-gray-900 whitespace-nowrap  pl-2">
                                 {{test.name}}
@@ -153,7 +156,7 @@
                         }
                     </tbody>
                     @if(arrayTest.length>0){
-                    <tfoot>
+                    <tfoot class="">
                         <tr class="font-semibold text-gray-900 dark:text-white">
                             <th scope="row" class="px-6 py-3 text-base">Total</th>
                             <!-- <td class="px-6 py-3">3</td> -->
@@ -163,8 +166,37 @@
                     </tfoot>
                     }
                 </table>
+                @if(arrayTest.length>0){
+                <div class="flex justify-end">
+                    @if(isLoged=='1'){
+                    <button (click)="seeDetailOrder('#ModalMetodosPago')"
+                        class="mt-2 primaryColor text-white font-normal text-sm py-2 px-3 rounded-sm">
+                        Generar órden de Laboratorio
+                    </button>
+                    }@else {
+                    <button (click)="showToast()"
+                        class="mt-2 primaryColor text-white font-normal text-sm py-2 px-3 rounded-sm">
+                        Generar órden de Laboratorio 2
+                    </button>
+                    }
+
+                </div>
+                }
             </div>
 
         </div>
+    </div>
+</div>
+
+
+
+
+<div id="ModalMetodosPago" tabindex="-1" aria-hidden="true"
+    class="hidden overflow-y-auto overflow-x-hidden fixed top-0 
+            right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full   animate__animated animate__slideInRight ">
+    <div class="relative p-4 w-full max-w-7xl max-h-full">
+
+        <app-payment-methods (saveCloseOrder)="updateOrder($event)" ></app-payment-methods>
+
     </div>
 </div>

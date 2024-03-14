@@ -1,0 +1,44 @@
+.divMP{
+    @apply border-2 border-gray-100 px-4 py-1 rounded-md shadow text-sm text-center hover:shadow-lg hover:bg-gray-100 hover:text-gray-700;
+
+  }
+.btnEfectivo{
+    background-color: green;
+    color: white;
+
+    i{
+        color: white;
+    }
+}
+.btnPaypal{
+    background-color: rgb(17, 61, 184);
+    color: white;
+
+    i{
+        color: white;
+    }
+}
+.btnDeUna{
+    background-color: rgb(15, 155, 155);
+    color: white;
+
+    i{
+        color: white;
+    }
+}
+.btnAhorita{
+    background-color: rgb(25, 198, 53);
+    color: white;
+
+    i{
+        color: white;
+    }
+}
+.btnTarjeta{
+    background-color: rgb(222, 225, 60);
+    color: black;
+
+    i{
+        color: white;
+    }
+}

@@ -1,0 +1,76 @@
+
+@if(origin=='user'){
+    <div class="flex justify-between">
+        <button 
+            (click)="redirectToCotization()"
+            class=" border-2 border-green-1000/100 border-b  border-t border-r border-l hover:bg-green-100 px-6 border-green-400 rounded-md text-sm text-green-500 " style="height: 2.8em !important;">
+            Cotiza tu orden
+        </button>
+        <button
+            class="relative group transition-all duration-200 focus:overflow-visible w-max h-max p-1.5 overflow-hidden flex flex-row items-center justify-center bg-gray-100 gap-2 rounded-xl border border-zinc-200">
+            <span class="text-sm">
+                <i class="bi bi-person text-lg"></i> Richard Chimbo Torres
+            </span>
+            <svg class="rotate-90 group-focus:rotate-180" xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+                viewBox="0 0 24 24">
+                <path fill="currentColor"
+                    d="m12 10.8l-3.9 3.9q-.275.275-.7.275t-.7-.275q-.275-.275-.275-.7t.275-.7l4.6-4.6q.3-.3.7-.3t.7.3l4.6 4.6q.275.275.275.7t-.275.7q-.275.275-.7.275t-.7-.275z" />
+            </svg>
+            <div
+                class="z-50 absolute shadow-lg -bottom-28 left-0 w-full h-max p-2 bg-white border border-zinc-200 rounded-lg flex flex-col gap-2">
+                <span class="flex flex-row gap-2 items-center hover:bg-zinc-100 p-2 rounded-lg">
+                    <i class="bi bi-gear"></i>
+                    <p>Configuración</p>
+                </span>
+                <span (click)="returnHome()"  class="flex flex-row gap-2 items-center hover:bg-zinc-100 p-2 rounded-lg">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <p>Cerrar Sesión</p>
+                </span>
+            </div>
+        </button>
+    </div>
+}@else if(origin=='cotization'){
+    <div class="flex justify-between">
+        @if(isLoged =='1'){
+        <i class="bi bi-arrow-left text-2xl primaryFont ease cursor-pointer" (click)="stepBefore()"></i>
+        <button
+            class="relative group  transition-all duration-200 focus:overflow-visible w-max h-max p-1.5 overflow-hidden flex flex-row items-center justify-center bg-gray-100 gap-2 rounded-xl border border-zinc-200">
+            <span class="text-sm">
+                <i class="bi bi-person text-lg"></i> Richard Chimbo Torres
+            </span>
+            <svg class="rotate-90 group-focus:rotate-180" xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+                viewBox="0 0 24 24">
+                <path fill="currentColor"
+                    d="m12 10.8l-3.9 3.9q-.275.275-.7.275t-.7-.275q-.275-.275-.275-.7t.275-.7l4.6-4.6q.3-.3.7-.3t.7.3l4.6 4.6q.275.275.275.7t-.275.7q-.275.275-.7.275t-.7-.275z" />
+            </svg>
+            <div
+                class="z-20 absolute shadow-lg -bottom-28 left-0 w-full h-max p-2 bg-white border border-zinc-200 rounded-lg flex flex-col gap-2">
+                <span class="flex flex-row gap-2 items-center hover:bg-zinc-100 p-2 rounded-lg">
+                    <i class="bi bi-gear"></i>
+                    <p>Configuración</p>
+                </span>
+                <span (click)="returnHome()" class="flex flex-row gap-2 items-center hover:bg-zinc-100 p-2 rounded-lg">
+                    <i class="bi bi-box-arrow-right"></i>
+                    <p>Cerrar Sesión </p>
+                </span>
+            </div>
+        </button>
+        }@else{
+        <i class="bi bi-arrow-left text-2xl primaryFont ease cursor-pointer" (click)="stepBeforeHome()"></i>
+    
+        <button (click)="openModal('#ModalLoginCotizacion')" class="btnPrimary py-2 px-7 hover:shadow-lg">Inicia
+            Sesión</button>
+    
+        }
+    
+    </div>
+}
+
+
+<div id="ModalLoginCotizacion" tabindex="-1" aria-hidden="true"
+    class="hidden overflow-y-auto overflow-x-hidden fixed top-0 
+            right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full   animate__animated animate__slideInRight ">
+    <div class="relative p-4 w-full max-w-lg max-h-full">
+        <app-login-component (loginCliente)="updateLoginScreen($event)" [origin]="'cotizacion'"></app-login-component>
+    </div>
+</div>

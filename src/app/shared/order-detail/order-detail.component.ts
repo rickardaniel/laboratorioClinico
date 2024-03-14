@@ -2,15 +2,18 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 import { RequirementComponent } from '../requirement/requirement.component';
+import { SubHeaderComponent } from '../sub-header/sub-header.component';
 
 @Component({
   selector: 'app-order-detail',
   standalone: true,
-  imports: [RequirementComponent],
+  imports: [RequirementComponent, SubHeaderComponent],
   templateUrl: './order-detail.component.html',
   styleUrl: './order-detail.component.scss'
 })
 export class OrderDetailComponent {
+  origen='cotization'
+
   constructor
   (
     private router: Router,

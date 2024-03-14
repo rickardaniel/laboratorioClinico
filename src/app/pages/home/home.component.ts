@@ -5,15 +5,16 @@ import { Modal, ModalInterface, ModalOptions } from 'flowbite';
 // import 'animate.css';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginComponentComponent } from '../../shared/login-component/login-component.component';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent, ReactiveFormsModule],
+  imports: [HeaderComponent, FooterComponent, ReactiveFormsModule, LoginComponentComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
-
+  origin='';
   constructor
   (
     private  route : Router
@@ -29,6 +30,7 @@ export class HomeComponent {
 
 
   openModal(name:string){
+    this.origin='home'
   let modal = this.createModal(name);
   modal.show();
   }
@@ -66,7 +68,12 @@ export class HomeComponent {
   loginSystem(form:any){
     if(form.user=='rickardaniel'){
       this.route.navigateByUrl('user');
+      localStorage.setItem('login', '1')
       this.closeModal(true, '#ModalLogin')
     }
+  }
+
+  redirectToCotization(){
+    this.route.navigateByUrl('cotizacion')
   }
 }

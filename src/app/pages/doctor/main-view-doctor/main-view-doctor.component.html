@@ -1,0 +1,73 @@
+<div style="padding-bottom: 10em!important;">
+
+</div>
+<div class="  flex justify-center ">
+    <img src="../../../assets/img/imgPrincipal2.png" alt="" style="width: 100%; ">
+    <h1 class="z-20 text-white  2xl:text-5xl xl:text-4xl pt-5 font-medium" style="position: absolute;"> Orden de
+        Laboratorio </h1>
+</div>
+<div class="container  mx-auto 2xl:px-80 xl:px-40 pt-10">
+    <app-sub-header    pp-sub-header [origin]="origin" ></app-sub-header>
+    <hr class="mt-4 mb-4">
+    <div class="" style="display: flex; justify-content: center; align-items: center;" >
+        <form [formGroup]="formSearchPatient">
+            <div class="grid grid-cols-3  space-x-2">
+                <div class="col-span-2">
+                    <div class="relative mt-7">
+                        <p class="labelGeneral">Buscar paciente</p>
+                        <input  formControlName="name" placeholder="Ingrese el número de orden"  type="text" class="inputGeneral" />    
+                    </div>
+                </div>
+                <div class="col-span-1 space-x-2">
+                    <button  (click)="searchPatient(formSearchPatient.value)" class="btnPrimary text-white py-2.5 px-5 rounded text-xs mt-7 shadow-lg ">
+                        Buscar
+                    </button>
+                    <button class="btnSuccess text-white py-2.5 px-5 rounded text-xs mt-7 shadow-lg ">
+                        Crear usuario
+                    </button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+    <div class="relative overflow-x-auto shadow-md sm:rounded-sm mt-10 mb-10" >
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500 ">
+            <thead class=" theadT text-xs text-white  primaryColor dark:bg-gray-700 dark:text-gray-400  " >
+                <tr style="font-family: Arial, Helvetica, sans-serif;  font-weight: 100; " >
+                    <th scope="col"  colspan="3" class="px-6 py-2.5">
+                       Paciente
+                    </th>
+                    <!-- <th scope="col"  colspan="1" class="px-6 py-2.5  justify-center">
+                        Estado
+                    </th>
+                    <th scope="col" colspan="1" class="px-6 py-2.5 flex justify-end ">
+                        
+                        <span class="pr-5">
+                            Acciones
+                        </span>
+                    </th> -->
+       
+                </tr>
+            </thead>
+            <tbody >
+                <!-- @for(order of filteredOrders; track order?.id){
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-neutral-100 dark:hover:bg-gray-600">
+                        <th scope="row"  colspan="3" class="px-6 py-0 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            {{order?.id}}
+                        </th>
+                        <td colspan="1"  class="  " >
+                            {{order?.state | titlecase }}
+                        </td>
+                        <td  colspan="1"
+                        (click)="seeDetailOrder()"
+                        class="px-6 py-4 flex justify-end font-medium text-gray-700  text-sm whitespace-nowrap dark:text-white  ease cursor-pointer " >
+                            <i class="bi bi-eye-fill pr-2"></i>  Ver Orden
+                        </td>                  
+                    </tr>
+                } -->
+            </tbody>
+        </table>
+    </div>
+
+</div>
+

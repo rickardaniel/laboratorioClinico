@@ -1,12 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Modal, ModalInterface, ModalOptions } from 'flowbite';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
+ isOpen: boolean = true;
 
-  constructor() { }
+  constructor
+  (
+    private toastr: ToastrService
+  )
+  {
+  }
 
   createModal(modal: any) {
     const $modalElement: HTMLElement | any = document.querySelector(modal);
@@ -38,4 +45,29 @@ export class ApiService {
         console.log(`Se ha eliminado el elemento con ID ${obj.id}.`);
     }
   }
+
+  // 3.- Recuperar datos de localStorage
+  getDataLocalStorage(key:string):any{
+    let data = localStorage.getItem(key);
+    if(data){
+      return data
+    }
+  }
+  // -------------------------  TOAST SERVICE ------------------------------
+  alertDanger( title: any, desc: any ) {
+    this.toastr.error( desc, title );
+  }
+
+  alertSuccess( title: any, desc: any ) {
+    this.toastr.success( desc, title );
+  }
+
+  alertWarning( title: any, desc: any ) {
+    this.toastr.warning( desc, title );
+  }
+  alertInfo( title: any, desc: any ) {
+    this.toastr.info( desc, title );
+  }
+
+
 }

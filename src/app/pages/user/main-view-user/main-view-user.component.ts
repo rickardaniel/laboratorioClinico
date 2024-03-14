@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { SubHeaderComponent } from '../../../shared/sub-header/sub-header.component';
 
 @Component({
   selector: 'app-main-view-user',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, SubHeaderComponent],
   templateUrl: './main-view-user.component.html',
   styleUrl: './main-view-user.component.scss'
 })
@@ -22,6 +23,7 @@ export class MainViewUserComponent {
   ]
   copiaOrderUser:any=[];
   filteredOrders:any=[];
+  origin='user';
   constructor
   (
     private router: Router,
@@ -41,6 +43,7 @@ export class MainViewUserComponent {
     this.selectTypeOrder(event)
   }
   returnHome(){
+    localStorage.setItem('login','0')
     this.router.navigateByUrl('inicio');
   }
   

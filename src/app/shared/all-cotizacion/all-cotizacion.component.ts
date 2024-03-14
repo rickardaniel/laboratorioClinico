@@ -1,16 +1,19 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { ApiService } from '../../services/api.service';
+import { Router } from '@angular/router';
+import { PaymentMethodsComponent } from '../payment-methods/payment-methods.component';
 
 @Component({
   selector: 'app-all-cotizacion',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, PaymentMethodsComponent],
   templateUrl: './all-cotizacion.component.html',
   styleUrl: './all-cotizacion.component.scss'
 })
 export class AllCotizacionComponent {
   @Input('dataCategories')tam:any
+  @Input('isLoged') isLoged:any;
   arrayTest:any=[];
   categoria: any;
   // exams=[
@@ -163,18 +166,34 @@ export class AllCotizacionComponent {
   //     }
   //   // ]
   // ]
+  collapse='open';
+  flagCollapse=false;
+  public ver1=false
+  public ver2=false
+  public ver3=false
+  public ver4=false
   constructor
 (
-  private api: ApiService
+  public api: ApiService,
+  public router: Router,
 )
 {
+  this.collapse='open';
   
 }
 
 OnInit(){
   console.log('exams', this.tam);
+  this.handleCrearCotizacion();
+  this.collapse='open';
 
 }
+  // Estado del accordion
+  handleCrearCotizacion() {
+    this.api.isOpen = true; // Abrir el accordion al redirigir a VistaCotizacion
+    // Código para redirigir a VistaCotizacion
+    this.collapse='open';
+  }
 
 getTestCategory(idCategory:any){
    
@@ -233,5 +252,51 @@ getTestCategory(idCategory:any){
       //   // // Disparar manualmente el evento change
       // input!.dispatchEvent(new Event('change'));
     input!.checked = false;
+  }
+
+  openCard(id:any, action:any){
+      console.log(id);
+        this.flagCollapse=true;
+        if(id==1){
+          this.ver1=true;
+        }
+  }
+  closeCard(id:any, action:any){
+      console.log(id);
+      this.flagCollapse=false;
+
+  }
+
+  showToast(){
+    this.api.alertInfo('',"Primero debe iniciar sesión")
+  }
+
+  toggleSection() {
+    const section = document.querySelector(".section.collapsible");
+    console.log('section', section);
+    
+    section!.classList.toggle("collapsed");
+  }
+
+  // seeDetailOrder(){
+  //   let idCuenta = '0215'
+  //   let ruta = ':idOrden'
+  //   ruta = ruta.replace(':idOrden', idCuenta.toString())
+  //   const modulo = "cotizacion"
+  //   console.log(modulo + '/' + ruta);
+  //   this.router.navigateByUrl(modulo + '/' + ruta).then();
+  // }
+  seeDetailOrder(modal:any){
+    console.log('entra', modal);
+    
+    // this.api.createModal(modal);
+    let modal2 = this.api.createModal(modal);
+    modal2.show();
+  }
+
+  updateOrder(event:any){
+    if(event){
+      this.router.navigateByUrl('user');
+    }
   }
 }

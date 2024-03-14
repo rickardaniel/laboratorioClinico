@@ -7,31 +7,9 @@
         Laboratorio </h1>
 </div>
 <div class="container  mx-auto 2xl:px-80 xl:px-40 pt-10">
-    <div class="flex justify-between">
-        <i class="bi bi-arrow-left text-2xl primaryFont" (click)="stepBefore()" ></i>
-        <button
-            class="relative group transition-all duration-200 focus:overflow-visible w-max h-max p-1.5 overflow-hidden flex flex-row items-center justify-center bg-gray-100 gap-2 rounded-xl border border-zinc-200">
-            <span class="text-sm">
-                <i class="bi bi-person text-lg"></i> Richard Chimbo Torres
-            </span>
-            <svg class="rotate-90 group-focus:rotate-180" xmlns="http://www.w3.org/2000/svg" width="22" height="22"
-                viewBox="0 0 24 24">
-                <path fill="currentColor"
-                    d="m12 10.8l-3.9 3.9q-.275.275-.7.275t-.7-.275q-.275-.275-.275-.7t.275-.7l4.6-4.6q.3-.3.7-.3t.7.3l4.6 4.6q.275.275.275.7t-.275.7q-.275.275-.7.275t-.7-.275z" />
-            </svg>
-            <div
-                class="absolute shadow-lg -bottom-28 left-0 w-full h-max p-2 bg-white border border-zinc-200 rounded-lg flex flex-col gap-2">
-                <span class="flex flex-row gap-2 items-center hover:bg-zinc-100 p-2 rounded-lg">
-                    <i class="bi bi-gear"></i>
-                    <p>Configuración</p>
-                </span>
-                <span (click)="returnHome()"  class="flex flex-row gap-2 items-center hover:bg-zinc-100 p-2 rounded-lg">
-                    <i class="bi bi-box-arrow-right"></i>
-                    <p>Cerrar Sesión</p>
-                </span>
-            </div>
-        </button>
-    </div>
+<!-- ===================== SUB-HEADER  ===================== -->
+    <app-sub-header [origin]="origen"></app-sub-header>
+ <!-- --------------------------------------------------------->
     <hr class="mt-4 mb-7">
     <div >
         <h1 class="primaryFont text-3xl pb-5" >Número de orden: 0215</h1>

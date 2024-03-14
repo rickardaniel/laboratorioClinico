@@ -3,24 +3,25 @@ import { Router } from '@angular/router';
 import { CotizacionDetailComponent } from '../../../shared/cotizacion-detail/cotizacion-detail.component';
 import { CotizacionComponent } from '../../../shared/cotizacion/cotizacion.component';
 import { AllCotizacionComponent } from '../../../shared/all-cotizacion/all-cotizacion.component';
+import { ApiService } from '../../../services/api.service';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { LoginComponentComponent } from '../../../shared/login-component/login-component.component';
+import { SubHeaderComponent } from '../../../shared/sub-header/sub-header.component';
 
 @Component({
   selector: 'app-main-cotization-view',
   standalone: true,
   // imports: [ CotizacionComponent, CotizacionDetailComponent],
-  imports: [ AllCotizacionComponent],
+  imports: [ AllCotizacionComponent, ReactiveFormsModule, LoginComponentComponent,SubHeaderComponent],
   templateUrl: './main-cotization-view.component.html',
   styleUrl: './main-cotization-view.component.scss'
 })
 export class MainCotizationViewComponent implements OnChanges {
   @Output() updateCollapse = new EventEmitter<any>();
-  // tam=[
-  //   {id:1, name:'Hematología y Coagulación'},
-  //   {id:2, name:'Estudio Tiroideo'},
-  //   {id:3, name:'Bioquímica'},
-  //   {id:4, name:'Estudios Hormonales'},
-  //   // {id:5, name:'Estudios Hormonales'}
-  // ]
+  isLoged:any;
+  origin='';
+  origen='cotization';
+
   tam=[
     // [
       {
@@ -180,23 +181,38 @@ export class MainCotizationViewComponent implements OnChanges {
   constructor
   (
     private router: Router,
+    private api: ApiService
   )
   {
   }
+
+  formLogin=new FormGroup({
+    user: new FormControl('rickardaniel',[Validators.required]),
+    pass: new FormControl('',[Validators.required]),
+  })
   ngOnChanges(changes: SimpleChanges): void {
     console.log('cambios padre =====>', changes);
     
   }
   ngOnInit(){
+    window.scrollTo({ top: 0, behavior: 'smooth' }); 
+
+    this.handleCrearCotizacion();
+    this.getLogin();
     // console.log('llega padre', this.arrayTest);
     
   }
   returnHome(){
+    localStorage.setItem('login','0')
     this.router.navigateByUrl('inicio');
+    
   }
-  stepBefore(){
-    this.router.navigateByUrl('user');
-  }
+  // stepBefore(){
+  //   this.router.navigateByUrl('user');
+  // }
+  // stepBeforeHome(){
+  //   this.router.navigateByUrl('inicio');
+  // }
   addFather(event:any){
     console.log('llega desde hijo', event);
     this.arrayTest= event;
@@ -210,6 +226,39 @@ export class MainCotizationViewComponent implements OnChanges {
     event.delete =  now;
     this.test= event;
   }
+
+  // Estado del accordion
+  handleCrearCotizacion() {
+    console.log('Se ejecuta');
+    
+    this.api.isOpen = true; // Abrir el accordion al redirigir a VistaCotizacion
+    // Código para redirigir a VistaCotizacion
+  }
+
+  getLogin(){
+    this.isLoged = this.api.getDataLocalStorage('login');
+    console.log('LOGIN', this.isLoged);
+    
+  }
+
+
+  // FUNCIONES MODAL
+  openModal(name:string){
+    let modal = this.api.createModal(name);
+    modal.show();
+    this.origin='cotizacion';
+    }
+
+
+
+
+
+  updateLoginScreen(event:any){
+    if(event){
+      this.isLoged=true;
+    }
+  }
+
 
 
 }
