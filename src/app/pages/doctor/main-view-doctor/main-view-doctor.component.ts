@@ -14,9 +14,21 @@ export class MainViewDoctorComponent {
   patient:any=[
     {
       name:'Richard Daniel Chimbo Torres',
+      // test
+      
+    },
+    {
+      name:'Richard Patricio Diaz',
+      // test
+      
+    },
+    {
+      name:'Richard Alberto Jimenez',
+      // test
       
     }
   ];
+  flagClient=false;
 
   constructor
   (
@@ -33,7 +45,7 @@ export class MainViewDoctorComponent {
   searchPatient(form:any){
       if(form.name=='Richard'){
         this.api.alertSuccess('OK','Paciente encontrado');
-
+        this.flagClient=true;
       }
   }
 }
